@@ -1,0 +1,163 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+
+<body>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div style="width: 80%; max-width: 800px; margin: 0 auto;">
+            <a  class="add-new" (click)="showallDialog()">show all tickets</a>
+            <div style="display: flex; align-items: center; margin-left: 650px;" >
+                <label for="statusFilter" style="margin-right: 8px;">Filter by Statut:</label>
+                <select id="statusFilter" [(ngModel)]="statutFilter" (change)="onStatutFilterChange()" style="padding: 5px;">
+                    <option [value]=undefined>All</option> <!-- All or no filter -->
+                    <option [value]="0">Open</option>
+                    <option [value]="1">Closed</option>
+                </select>
+            </div>
+            <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                <thead>
+                    <tr style="background-color: #4CAF50; color: white;">
+                        <th (click)="onSortColumn('ticketId')">Ticket ID
+                            <span *ngIf="sortColumn === 'ticketId'">
+                              <span *ngIf="sortDirection === 'asc'" class="arrow-up"></span>
+                              <span *ngIf="sortDirection === 'desc'" class="arrow-down"></span>
+                            </span>
+                          </th>
+                          <th (click)="onSortColumn('description')">Description
+                            <span *ngIf="sortColumn === 'description'">
+                              <span *ngIf="sortDirection === 'asc'" class="arrow-up"></span>
+                              <span *ngIf="sortDirection === 'desc'" class="arrow-down"></span>
+                            </span>
+                          </th>
+                         
+                          <th (click)="onSortColumn('statut')">Statut
+                            <span *ngIf="sortColumn === 'statut'">
+                              <span *ngIf="sortDirection === 'asc'" class="arrow-up"></span>
+                              <span *ngIf="sortDirection === 'desc'" class="arrow-down"></span>
+                            </span>
+                          </th>
+                          <th (click)="onSortColumn('date')">Date
+                            <span *ngIf="sortColumn === 'date'">
+                              <span *ngIf="sortDirection === 'asc'" class="arrow-up"></span>
+                              <span *ngIf="sortDirection === 'desc'" class="arrow-down"></span>
+                            </span>
+                          </th>
+                      <th style="padding: 10px; border: 1px solid #ddd;">Actions</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                    <tr *ngFor="let ticket of listTickets">
+                        <td style="padding: 10px; border: 1px solid #ddd;">{{ticket.ticketId}}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">{{ticket.description}}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">
+                            <select [(ngModel)]="ticket.statut" (change)="ChangeStatut(ticket.ticketId, ticket.statut)">
+                                <option [value]="0">Open</option>
+                                <option [value]="1">Closed</option>
+                            </select>
+                        </td>
+                        <td style="padding: 10px; border: 1px solid #ddd; width: 150px;">{{ticket.formattedDateCreateion}}</td> <!-- Adjusted width -->
+                        <td style="padding: 10px; border: 1px solid #ddd;">
+                            <a href="#"><i class="pi pi-pencil" (click)="showUpdateDialog(ticket)" title="Update"></i></a> |
+                            <a href="#"><i class="pi pi-trash" (click)="confirm2($event,ticket.ticketId)" title="Delete"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a  class="add-new" (click)="SHowaddnewdialog()">Add New</a>
+
+            <p-paginator *ngIf="!SearchActived" #paginator
+                (onPageChange)="onPageChange($event)"
+                [first]="page * limit"
+                [rows]="limit"
+                [totalRecords]="total"
+                [rowsPerPageOptions]="[4, 8, 12]">
+            </p-paginator>
+        </div>
+    </div>
+</body>
+
+<p-dialog [(visible)]="TicketUpdateDialog" [style]="{width: '450px'}" header="Update Ticket" [modal]="true" class="p-fluid">
+        
+    <ng-template pTemplate="content">
+        <form [formGroup]="UpdateTicketForm">
+            <div class="field">
+                <label for="name">Ticket Description:</label>
+                <input type="text" (focus)="dirty()" formControlName="Description" (keyup.enter)="edit()" pInputText id="name"  />
+                <small *ngIf="f['Description'].invalid && (f['Description'].dirty || f['Description'].touched)" class="ng-dirty ng-invalid" style="color: red;">Name is required.</small>
+            </div>
+
+            <div class="field">
+                <label for="status">Status:</label>
+                <select id="status" formControlName="Statut" style="width: 100%; padding: 0.5em; border-radius: 4px; border: 1px solid #ccc;">
+                    <option [value]="0">Open</option>
+                    <option [value]="1">Closed</option>
+                </select>
+                <small *ngIf="f['Statut'].invalid && (f['Statut'].dirty || f['Statut'].touched)" class="ng-dirty ng-invalid" style="color: red;">Status is required.</small>
+            </div>
+        </form>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" (click)="cancel()" class="p-button-text"></button>
+        <button pButton pRipple label="Save" (click)="edit()" icon="pi pi-check" class="p-button-text"></button>
+    </ng-template>
+
+</p-dialog>
+<p-dialog [(visible)]="addnewTicketDialog" [style]="{width: '450px'}" header="Add New Ticket" [modal]="true" class="p-fluid">
+        
+    <ng-template pTemplate="content">
+        <form [formGroup]="AddNewTicketForm">
+            <div class="field">
+                <label for="name">Ticket Description:</label>
+                <input type="text" (focus)="dirty()" formControlName="Description" (keyup.enter)="addnewTicket()" pInputText id="name"  />
+                <small *ngIf="f2['Description'].invalid && (f2['Description'].dirty || f2['Description'].touched)" class="ng-dirty ng-invalid" style="color: red;">Name is required.</small>
+            </div>
+
+            <div class="field">
+                <label for="status">Status:</label>
+                <select id="status" formControlName="Statut" (onchange)="dirty()" style="width: 100%; padding: 0.5em; border-radius: 4px; border: 1px solid #ccc;">
+                    <option [value]="0">Open</option>
+                    <option [value]="1">Closed</option>
+                </select>
+                <small *ngIf="f2['Statut'].invalid && (f2['Statut'].dirty || f2['Statut'].touched)" class="ng-dirty ng-invalid" style="color: red;">Status is required.</small>
+            </div>
+        </form>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" (click)="cancel()" class="p-button-text"></button>
+        <button pButton pRipple label="Save" (click)="addnewTicket()" icon="pi pi-check" class="p-button-text"></button>
+    </ng-template>
+</p-dialog>
+
+    <p-dialog [(visible)]="allTicketsDialog" [style]="{width: '600px'}" header="All Tickets({{listAllTicketsCount}})" [modal]="true" class="p-fluid">
+    
+        <ng-template pTemplate="content">
+            <div class="ticket-list" *ngIf="listAllTickets && listAllTickets.length > 0">
+                <div *ngFor="let ticket of listAllTickets" class="ticket-card">
+                    <div class="ticket-header">
+                        <span>Ticket ID: {{ticket.ticketId}}</span>
+                        <span class="ticket-status" [ngClass]="{'open': ticket.statut === 0, 'closed': ticket.statut === 1}">
+                            {{ticket.statut === 0 ? 'Open' : 'Closed'}}
+                        </span>
+                    </div>
+                    <div class="ticket-description">
+                        <strong>Description:</strong> {{ticket.description}}
+                    </div>
+                    <div class="ticket-date">
+                        <strong>Date:</strong> {{ticket.formattedDateCreateion}}
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!listTickets ">
+                <p>No tickets available.</p>
+            </div>
+        </ng-template>
+    
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Close" icon="pi pi-times" (click)="allTicketsDialog=false" class="p-button-text"></button>
+        </ng-template>
+    
+    </p-dialog>
+    

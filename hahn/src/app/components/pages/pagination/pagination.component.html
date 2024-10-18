@@ -1,0 +1,16 @@
+
+ <nav aria-label="Page navigation example"  >
+  <div class="row pagen-zk">
+   <span> ( {{ getMin() }} - {{ getMax() }} of {{ count }} )</span>
+
+ <ul class="pagination pagincursor" style="margin: 0px 0px -10px 10px; background-color: transparent;width: auto!important;">
+     <li *ngIf="page != 1" class="page-item" ><a class="page-link" (click)="onPage(1)"   >«</a></li>
+     <li  *ngIf="page != 1" class="page-item"><a class="page-link" (click)="onPrev()"   >‹</a></li>
+ 
+   <li class="page-item" [ngClass]="{'active': pageNum === page}" *ngFor="let pageNum of getPages()"  (click)="onPage(pageNum)"><a class="page-link"  >{{pageNum}}</a></li>
+   <li *ngIf=" getMax()!=count" class="page-item" ><a class="page-link"  (click)="onNext()">›</a></li>
+   <li *ngIf=" getMax()!=count" class="page-item"   ><a class="page-link" (click)="onPage(totalPages())">»</a></li>
+  
+ </ul>
+ </div>   
+</nav> 

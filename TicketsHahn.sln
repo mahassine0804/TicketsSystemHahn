@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketsHahn", "TicketsHahn\TicketsHahn.csproj", "{D28888B9-3CD1-4F26-9EE5-5C2C41A64AD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketsHahn.Tests", "TicketsHahn.Tests\TicketsHahn.Tests.csproj", "{C9BFB7AC-6047-4182-A848-2AA8E65EF420}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D28888B9-3CD1-4F26-9EE5-5C2C41A64AD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D28888B9-3CD1-4F26-9EE5-5C2C41A64AD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D28888B9-3CD1-4F26-9EE5-5C2C41A64AD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D28888B9-3CD1-4F26-9EE5-5C2C41A64AD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9BFB7AC-6047-4182-A848-2AA8E65EF420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9BFB7AC-6047-4182-A848-2AA8E65EF420}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9BFB7AC-6047-4182-A848-2AA8E65EF420}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9BFB7AC-6047-4182-A848-2AA8E65EF420}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D985037C-5198-4243-900F-38D60A3057DD}
+	EndGlobalSection
+EndGlobal
