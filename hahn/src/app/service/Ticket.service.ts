@@ -60,13 +60,5 @@ export class TicketService {
   updateLanguageName(language:any){
     return this.http.put<any>(`${this.baseUrl}`,language)
   }
-  searchLanguePaginate(term:string,skip:number,take:number){
-    return this.http.get<any>(`${this.baseUrl}searchLanguePaginate/${skip}/${take}/${term}`);
-  }
-  AddNewLnaguage(language:any){
-    return this.http.post<any>(`${this.baseUrl}`,language)
-  }
-  deleteLanguages(LanguageId: string[]): Observable<any> {
-    return this.http.delete<any>(`${this.baseUrl}delete-list`, { body: LanguageId });
-}
+  
 }

@@ -13,32 +13,21 @@ import { setThrowInvalidWriteToSignalError } from '@angular/core/primitives/sign
   providers: [MessageService ,ConfirmationService],
 })
 export class ticketComponent implements OnInit{
-  productss:any[]=[]
-  roles:any=[];
   listTickets:any
   listTicketsSearch:any[]=[];
-  DeleteList: any[] = [];
 
-  SearchActived:boolean=false;
-  checks:boolean=false
 listAllTickets:any
 listAllTicketsCount:any
 
 
   TicketUpdateDialog:boolean = false;
   addnewTicketDialog:boolean=false;
-  checked:boolean=false
-  check:boolean=false
   statutFilter: number | undefined; // Declare statutFilter as number or undefined
 
 
   sortedTickets: any[] = [];  // This will display sorted data from the API
   sortColumn: string = '';  // The current column being sorted
   sortDirection: 'asc' | 'desc' = 'asc';
-  ajouter:boolean = false;
-  modifier:boolean= false;
-  selectedlanguageId:any=null;
-  term:string='';
 
   UpdateTicketForm!:FormGroup;
   AddNewTicketForm!:FormGroup;
@@ -50,12 +39,6 @@ listAllTicketsCount:any
   page:number = 0;
   length:number=0;
   allTicketsDialog:boolean=false
-  //pagination search
-  totals:number = 0;
-  limits:number =4;
-  loadings : boolean =true;
-  pages:number = 0;
-  lengths:number=0;
   constructor(private TicketService:TicketService,
    private confirmationService: ConfirmationService, private messageService: MessageService,private formbuilder:FormBuilder,
    
@@ -190,7 +173,6 @@ showallDialog(){
     
      getAllTicketsPaginate() {
     var countskip = (this.page) * this.limit;
-    this.DeleteList = [];
 
     // Set the default sortColumn and sortDirection if they are not defined
     const sortColumn = this.sortColumn || 'ticketId'; // Set default to 'ticketId'
@@ -308,15 +290,7 @@ removeTicket(languageId:any){
 get f() { return this.UpdateTicketForm.controls; }
 get f2() { return this.AddNewTicketForm.controls; }
 
-openNew() {
-  if(this.roles[140]){
-    
-    this.TicketUpdateDialog = true;
-  }else{
-    
-    this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Vous n\'avez pas le droit a Ajouter  une Langue', life: 3000 });  
-  }
-}
+
 
 
 dirty(){

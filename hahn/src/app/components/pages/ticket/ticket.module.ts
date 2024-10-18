@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LangueRoutingModule } from './ticket-routing.module';
+import { ticketRoutingModule } from './ticket-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { FileUploadModule } from 'primeng/fileupload';
@@ -27,7 +27,7 @@ import { ConfirmationService } from 'primeng/api';
   declarations: [ticketComponent],
   imports: [
     CommonModule,
-    LangueRoutingModule,
+    ticketRoutingModule,
     TableModule,
     FileUploadModule,
     FormsModule,

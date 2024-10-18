@@ -10,4 +10,4 @@ const routes: Routes = [];
   ])],
   exports: [RouterModule]
 })
-export class LangueRoutingModule { }
+export class ticketRoutingModule { }

@@ -11,13 +11,8 @@ import { ngxPermissionsGuard } from 'ngx-permissions';
 
       
 
-        { path: 'langue', loadChildren: () => import('./ticket/ticket.module').then(m => m.TicketModule),
-        canActivate:[ngxPermissionsGuard] ,data:{
-        permissions:{
-        only:["143"],
-        redirectTo:"/",
-        }
-        }},
+        { path: 'ticket', loadChildren: () => import('./ticket/ticket.module').then(m => m.TicketModule)
+        },
 
        
          
