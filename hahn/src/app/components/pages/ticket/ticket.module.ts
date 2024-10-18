@@ -23,13 +23,11 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 
-
 @NgModule({
   declarations: [ticketComponent],
   imports: [
     CommonModule,
     LangueRoutingModule,
-
     TableModule,
     FileUploadModule,
     FormsModule,
@@ -45,12 +43,12 @@ import { ConfirmationService } from 'primeng/api';
     InputNumberModule,
     DialogModule,
     InputSwitchModule,
-    ConfirmPopupModule ,
+    ConfirmPopupModule,
     ReactiveFormsModule,
     PaginatorModule,
     CheckboxModule,
-    ConfirmDialogModule,
-    TableModule
-  ]
+    ConfirmDialogModule
+  ],
+  providers: [ConfirmationService]
 })
-export class LangueModule { }
+export class TicketModule {}

@@ -3,16 +3,13 @@ import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FileUploadModule } from 'primeng/fileupload';
-import { AppComponent } from 'src/app/app.component';
 
 @NgModule({
-  
-    imports: [
-        CommonModule,
-        PagesRoutingModule,
-        CheckboxModule,
-        FileUploadModule,
-        AppComponent
-    ]
+  imports: [
+    CommonModule,
+    PagesRoutingModule,
+    CheckboxModule,
+    FileUploadModule
+  ]
 })
 export class PagesModule { }

@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
     imports: [
         RouterModule.forRoot([
            
-            { path: '', loadChildren: () => import('./components/pages/ticket/ticket.module').then(m => m.LangueModule),
+            { path: '', loadChildren: () => import('./components/pages/ticket/ticket.module').then(m => m.TicketModule),
                data:{
                 
                 }},
