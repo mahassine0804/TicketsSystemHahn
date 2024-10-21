@@ -49,7 +49,7 @@ Node.js (version 14 or higher)
 Step 1: Clone the Repository
 Open your terminal or command prompt and run the following command:
 
-git clone https://github.com/mahassine0804/TicketsHahn.git
+git clone https://github.com/mahassine0804/TicketsSystemHahn.git
 cd TicketsHahn
 Step 2: Configure Database Connection
 Open appsettings.json in your project root directory.
