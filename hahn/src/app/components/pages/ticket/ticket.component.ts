@@ -15,7 +15,7 @@ import { setThrowInvalidWriteToSignalError } from '@angular/core/primitives/sign
 export class ticketComponent implements OnInit{
   listTickets:any
   listTicketsSearch:any[]=[];
-
+  spinner:boolean=false
 listAllTickets:any
 listAllTicketsCount:any
 
@@ -46,7 +46,7 @@ listAllTicketsCount:any
 
   }
   ngOnInit() {
-   
+   this.spinner = true
     this.UpdateTicketForm = this.formbuilder.group({
       TicketId: ['', [Validators.required]],
       Description: ['', [Validators.required]],
@@ -184,7 +184,7 @@ showallDialog(){
         next: (res:any) => {
           this.listTickets = res.tickets; // Updated to match the new structure
           this.total = res.totalCount; // Update total count accordingly
-    
+          this.spinner=false
 
          
         },

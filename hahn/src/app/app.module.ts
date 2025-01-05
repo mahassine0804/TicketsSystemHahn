@@ -15,7 +15,7 @@ import { PagesModule } from './components/pages/pages.module';
     BrowserModule,
     AppRoutingModule,
     CommonModule,
-    PagesModule, // Make sure this is present
+    PagesModule, 
     BrowserModule,
     AppRoutingModule,
     ProgressSpinnerModule,

@@ -22,7 +22,8 @@ import { PaginatorModule } from 'primeng/paginator';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
-
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 @NgModule({
   declarations: [ticketComponent],
   imports: [
@@ -46,8 +47,10 @@ import { ConfirmationService } from 'primeng/api';
     ConfirmPopupModule,
     ReactiveFormsModule,
     PaginatorModule,
+    AutoCompleteModule,
     CheckboxModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    ProgressSpinnerModule
   ],
   providers: [ConfirmationService]
 })
